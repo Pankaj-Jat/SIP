@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIP Calculator | Investment Planning</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>SIP Calculator</span>
+            </div>
+            <ul>
+                <li><a href="#calculator">Calculator</a></li>
+                <li><a href="#blog">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="calculator" class="calculator-section">
+            <div class="container">
+                <h1>Advanced SIP Investment Calculator</h1>
+                <div class="calculator-wrapper">
+                    <div class="calculator-tabs">
+                        <button class="tab-btn active" data-tab="basic">Basic SIP</button>
+                        <button class="tab-btn" data-tab="step-up">Step-up SIP</button>
+                        <button class="tab-btn" data-tab="goal">Goal Planning</button>
+                    </div>
+
+                    <div class="tab-content active" id="basic-tab">
+                        <div class="input-group">
+                            <label for="monthly-investment">Monthly Investment (₹)</label>
+                            <input type="number" id="monthly-investment" value="5000" min="500">
+                        </div>
+                        <div class="input-group">
+                            <label for="investment-period">Investment Period (Years)</label>
+                            <input type="number" id="investment-period" value="10" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label for="expected-return">Expected Annual Return (%)</label>
+                            <input type="number" id="expected-return" value="12" min="1" max="30">
+                        </div>
+                        <div class="input-group">
+                            <label for="inflation-rate">Expected Inflation Rate (%)</label>
+                            <input type="number" id="inflation-rate" value="6" min="0" max="20">
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="step-up-tab">
+                        <div class="input-group">
+                            <label for="step-up-amount">Initial Monthly Investment (₹)</label>
+                            <input type="number" id="step-up-amount" value="5000" min="500">
+                        </div>
+                        <div class="input-group">
+                            <label for="step-up-period">Investment Period (Years)</label>
+                            <input type="number" id="step-up-period" value="10" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label for="step-up-return">Expected Annual Return (%)</label>
+                            <input type="number" id="step-up-return" value="12" min="1" max="30">
+                        </div>
+                        <div class="input-group">
+                            <label for="annual-increase">Annual Increase in Investment (%)</label>
+                            <input type="number" id="annual-increase" value="10" min="0" max="100">
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="goal-tab">
+                        <div class="input-group">
+                            <label for="target-amount">Target Amount (₹)</label>
+                            <input type="number" id="target-amount" value="1000000" min="10000">
+                        </div>
+                        <div class="input-group">
+                            <label for="goal-period">Time to Goal (Years)</label>
+                            <input type="number" id="goal-period" value="10" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label for="goal-return">Expected Annual Return (%)</label>
+                            <input type="number" id="goal-return" value="12" min="1" max="30">
+                        </div>
+                        <div class="input-group">
+                            <label for="goal-inflation">Expected Inflation Rate (%)</label>
+                            <input type="number" id="goal-inflation" value="6" min="0" max="20">
+                        </div>
+                    </div>
+
+                    <button id="calculate-btn">Calculate</button>
+                    
+                    <div class="results" id="results">
+                        <div class="result-card">
+                            <h3>Total Investment</h3>
+                            <p id="total-investment">₹0</p>
+                        </div>
+                        <div class="result-card">
+                            <h3>Expected Returns</h3>
+                            <p id="expected-returns">₹0</p>
+                        </div>
+                        <div class="result-card highlight">
+                            <h3>Total Value</h3>
+                            <p id="total-value">₹0</p>
+                        </div>
+                    </div>
+
+                    <div class="advanced-results">
+                        <div class="chart-container">
+                            <canvas id="investment-chart"></canvas>
+                        </div>
+                        <div class="stats-container">
+                            <div class="stat-item">
+                                <h4>Inflation Adjusted Value</h4>
+                                <p id="inflation-adjusted-value">₹0</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Monthly SIP Required</h4>
+                                <p id="required-sip">₹0</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Wealth Gained Ratio</h4>
+                                <p id="wealth-ratio">0x</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="blog-section">
+            <div class="container">
+                <h2>Understanding Systematic Investment Plans (SIP)</h2>
+                
+                <article>
+                    <h3>What is a Systematic Investment Plan (SIP)?</h3>
+                    <p>A Systematic Investment Plan, commonly known as SIP, is a methodical approach to investing that has revolutionized the way individuals participate in the financial markets, particularly mutual funds. This investment strategy allows investors to commit a fixed amount at regular intervals (typically monthly) instead of making lump-sum investments. Think of it as a financial discipline that helps you build wealth steadily over time.</p>
+
+                    <h3>How Does SIP Work?</h3>
+                    <p>The mechanics of SIP are beautifully simple yet powerful. When you start a SIP, you authorize your bank to automatically deduct a predetermined amount from your account at fixed intervals. This amount is then invested in your chosen mutual fund scheme. The beauty of this system lies in its automation – once set up, investments continue without requiring your active intervention, making it an excellent tool for long-term wealth creation.</p>
+
+                    <h3>Key Benefits of SIP Investing</h3>
+                    <h4>1. Rupee Cost Averaging</h4>
+                    <p>One of the most significant advantages of SIP investing is rupee cost averaging. Since you're investing a fixed amount regularly, you automatically buy more units when prices are low and fewer units when prices are high. This approach helps in averaging out your purchase cost over time, reducing the impact of market volatility on your investment.</p>
+
+                    <h4>2. Power of Compounding</h4>
+                    <p>SIPs harness the power of compounding, often called the eighth wonder of the world. When your investment returns generate additional returns, your money grows exponentially over time. The longer you stay invested, the more powerful this effect becomes. This is why starting early with SIP investments can lead to substantial wealth accumulation.</p>
+
+                    <h4>3. Financial Discipline</h4>
+                    <p>SIPs instill financial discipline by making investing a habit. The automated nature of SIP ensures that you don't skip investments due to market conditions or emotional decisions. This systematic approach helps in building a substantial corpus over time, even with modest monthly investments.</p>
+
+                    <h3>Factors to Consider When Starting a SIP</h3>
+                    <h4>1. Investment Amount</h4>
+                    <p>The beauty of SIPs is that you can start with amounts as low as ₹500 per month. However, the ideal investment amount should be determined based on your financial goals, income, and expenses. It's recommended to increase your SIP amount as your income grows.</p>
+
+                    <h4>2. Investment Horizon</h4>
+                    <p>SIPs work best when given adequate time. A longer investment horizon not only helps in riding out market volatility but also maximizes the benefits of compounding. For equity-based investments, a minimum horizon of 5-7 years is recommended.</p>
+
+                    <h4>3. Fund Selection</h4>
+                    <p>Choose mutual funds based on your risk appetite, investment objectives, and time horizon. Consider factors like fund performance, expense ratio, fund manager's track record, and the fund house's reputation.</p>
+
+                    <h3>Advanced SIP Strategies</h3>
+                    <h4>1. Step-up SIP</h4>
+                    <p>A step-up SIP allows you to increase your investment amount periodically, typically annually. This strategy helps in aligning your investments with your growing income and inflation. For example, if you start with ₹5,000 monthly and increase it by 10% annually, you'll be investing ₹5,500 monthly in the second year.</p>
+
+                    <h4>2. Trigger SIP</h4>
+                    <p>This advanced form of SIP allows you to set specific market conditions or index levels as triggers for your investments. It's particularly useful for sophisticated investors who want to time their investments based on market movements.</p>
+
+                    <h3>Common Mistakes to Avoid in SIP Investing</h3>
+                    <h4>1. Stopping SIPs in Market Downturns</h4>
+                    <p>Many investors make the mistake of stopping their SIPs when markets fall. This defeats the very purpose of rupee cost averaging and can significantly impact long-term returns. Market corrections should be seen as opportunities to accumulate more units at lower prices.</p>
+
+                    <h4>2. Not Reviewing Investments</h4>
+                    <p>While SIPs are automatic, your investment portfolio needs periodic review. Check if your funds are performing as per expectations and if they continue to align with your financial goals. Make changes if necessary, but avoid frequent switches.</p>
+
+                    <h3>Tax Implications of SIP Investments</h3>
+                    <p>Understanding the tax implications of your SIP investments is crucial for effective financial planning. For equity mutual funds, gains are considered long-term if units are held for more than one year, and such gains above ₹1 lakh are taxed at 10%. For debt funds, gains are considered long-term after three years and are taxed at 20% with indexation benefits.</p>
+
+                    <h3>SIP During Different Market Phases</h3>
+                    <h4>1. Bull Markets</h4>
+                    <p>During bull markets, when prices are rising, your fixed SIP amount will buy fewer units. This is natural and shouldn't be a cause for concern. Remember, market cycles are normal, and your investment strategy should focus on the long term.</p>
+
+                    <h4>2. Bear Markets</h4>
+                    <p>Bear markets present excellent opportunities for SIP investors. Your fixed investment amount buys more units when prices are low, potentially leading to better returns when markets recover.</p>
+
+                    <h3>The Role of SIP in Financial Planning</h3>
+                    <p>SIPs should be an integral part of your financial planning strategy. They can help you achieve various financial goals, from building an emergency fund to planning for retirement. The key is to align your SIP investments with specific goals and their time horizons.</p>
+
+                    <h3>Future of SIP Investing</h3>
+                    <p>The future of SIP investing looks promising with technological advancements making it more accessible and convenient. Mobile apps and digital platforms have simplified the process of starting and managing SIPs. Additionally, new features like UPI-based SIPs and AI-powered fund selection are making the investment journey more user-friendly.</p>
+
+                    <h3>Conclusion</h3>
+                    <p>Systematic Investment Plans represent a powerful tool for long-term wealth creation. Their success lies in the combination of disciplined investing, rupee cost averaging, and the power of compounding. Whether you're a beginner or an experienced investor, SIPs offer a structured approach to achieving your financial goals. Remember, the key to successful SIP investing is patience and consistency. Start early, stay invested, and let the power of compounding work its magic on your financial future.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SIP Calculator. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
